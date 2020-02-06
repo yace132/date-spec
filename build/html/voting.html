@@ -34,60 +34,125 @@
             
   <div class="section" id="voting">
 <h1>Voting<a class="headerlink" href="#voting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="types">
+<span id="id1"></span><h2>types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ballot">
-<span id="id1"></span><h2>Ballot<a class="headerlink" href="#ballot" title="Permalink to this headline">¶</a></h2>
+<h3>Ballot<a class="headerlink" href="#ballot" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">Ballot{}</span></code></p>
 </div>
-<div class="section" id="ballotbox">
-<span id="id2"></span><h2>ballotBox<a class="headerlink" href="#ballotbox" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Ballot[1024]</span> <span class="pre">ballotBox;</span></code></p>
-</div>
 <div class="section" id="electionstates">
-<span id="id3"></span><h2>ElectionStates<a class="headerlink" href="#electionstates" title="Permalink to this headline">¶</a></h2>
+<h3>ElectionStates<a class="headerlink" href="#electionstates" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">ElectionStates</span> <span class="pre">{</span> <span class="pre">announced,</span> <span class="pre">voting,</span> <span class="pre">tally,</span> <span class="pre">closed</span> <span class="pre">}</span></code></p>
 </div>
+</div>
+<div class="section" id="voting-states">
+<span id="id2"></span><h2>voting states<a class="headerlink" href="#voting-states" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ballotbox">
+<h3>ballotBox<a class="headerlink" href="#ballotbox" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Ballot[1024]</span> <span class="pre">ballotBox;</span></code></p>
+</div>
 <div class="section" id="state">
-<span id="id4"></span><h2>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h2>
+<h3>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ElectionStates</span> <span class="pre">state;</span></code></p>
 </div>
 <div class="section" id="title">
-<span id="id5"></span><h2>title<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h2>
+<h3>title<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">bytes32</span> <span class="pre">title;</span></code></p>
 <p><em>name of voting</em></p>
-<p>Chinese is about 10 characters (utf8).</p>
-<p>fix-sized title is convenient for developers.</p>
+<p>Chinese is about 10 characters (utf8).fix-sized title is convenient for developers.</p>
 </div>
 <div class="section" id="proposer">
-<span id="id6"></span><h2>proposer<a class="headerlink" href="#proposer" title="Permalink to this headline">¶</a></h2>
+<h3>proposer<a class="headerlink" href="#proposer" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">bytes32</span> <span class="pre">proposer;</span></code></p>
 <p>bytes32 for cheaper gas</p>
 </div>
 <div class="section" id="condition">
-<span id="id7"></span><h2>condition<a class="headerlink" href="#condition" title="Permalink to this headline">¶</a></h2>
+<h3>condition<a class="headerlink" href="#condition" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">uint</span> <span class="pre">ageMin;</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">uint</span> <span class="pre">ageMax;</span></code></p>
 </div>
 <div class="section" id="starttime">
-<span id="id8"></span><h2>startTime<a class="headerlink" href="#starttime" title="Permalink to this headline">¶</a></h2>
+<h3>startTime<a class="headerlink" href="#starttime" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">uint</span> <span class="pre">startTime;</span></code></p>
 </div>
 <div class="section" id="endtime">
-<span id="id9"></span><h2>endTime<a class="headerlink" href="#endtime" title="Permalink to this headline">¶</a></h2>
+<h3>endTime<a class="headerlink" href="#endtime" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">uint</span> <span class="pre">endTime;</span></code></p>
 </div>
-<div class="section" id="submitballot">
-<span id="id10"></span><h2>submitBallot<a class="headerlink" href="#submitballot" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function submitBallot(Ballot ballot)
-        duringVoting
-        matchAge
-{
-        //check current state
-        //check age of voters in ring
-        //push `ballot` to `ballotBox`
-}
+<div class="section" id="votersat">
+<h3>votersAt<a class="headerlink" href="#votersat" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">votersAt;</span></code></p>
+</div>
+</div>
+<div class="section" id="functions">
+<span id="id3"></span><h2>functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructor">
+<h3>constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constructor</span><span class="p">(</span>
+        <span class="n">bytes32</span> <span class="n">title_</span><span class="p">,</span>
+        <span class="n">bytes32</span> <span class="n">proposer_</span><span class="p">,</span>
+        <span class="n">uint</span> <span class="n">age_min_</span><span class="p">,</span>
+        <span class="n">uint</span> <span class="n">age_max_</span><span class="p">,</span>
+        <span class="n">uint</span> <span class="n">start_time_</span><span class="p">,</span>
+        <span class="n">uint</span> <span class="n">end_time_</span><span class="p">,</span>
+        <span class="n">address</span> <span class="n">voters_at_</span>
+<span class="p">)</span> <span class="n">public</span> <span class="p">{</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>Voters of ring is provided by <code class="docutils literal notranslate"><span class="pre">ballot</span></code>.</p>
+<div class="section" id="modifiers">
+<h4>modifiers<a class="headerlink" href="#modifiers" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="hasannounced">
+<h5>hasAnnounced<a class="headerlink" href="#hasannounced" title="Permalink to this headline">¶</a></h5>
+</div>
+<div class="section" id="duringvoting">
+<h5>duringVoting<a class="headerlink" href="#duringvoting" title="Permalink to this headline">¶</a></h5>
+</div>
+<div class="section" id="duringtally">
+<h5>duringTally<a class="headerlink" href="#duringtally" title="Permalink to this headline">¶</a></h5>
+</div>
+<div class="section" id="votingclosed">
+<h5>votingClosed<a class="headerlink" href="#votingclosed" title="Permalink to this headline">¶</a></h5>
+</div>
+<div class="section" id="matchage">
+<h5>matchAge<a class="headerlink" href="#matchage" title="Permalink to this headline">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="section" id="submitballot">
+<h3>submitBallot<a class="headerlink" href="#submitballot" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">submitBallot</span><span class="p">(</span><span class="n">Ballot</span> <span class="n">ballot</span><span class="p">)</span>
+        <span class="n">duringVoting</span>
+        <span class="n">matchAge</span>
+<span class="p">{</span>
+        <span class="o">//</span><span class="n">Check</span> <span class="n">current</span> <span class="n">state</span>
+        <span class="o">//</span><span class="n">Check</span> <span class="n">age</span> <span class="n">of</span> <span class="n">voters</span> <span class="ow">in</span> <span class="n">ring</span>
+        <span class="o">//</span>      <span class="nb">open</span> <span class="n">voters</span> <span class="n">contract</span>
+        <span class="o">//</span>      <span class="n">get</span> <span class="n">voters</span><span class="s1">&#39; informations</span>
+        <span class="o">//</span><span class="n">Check</span> <span class="n">no</span> <span class="n">repeat</span> <span class="n">voting</span> <span class="p">(</span> <span class="n">key</span> <span class="n">image</span> <span class="p">)</span>
+        <span class="o">//</span><span class="n">Push</span> <span class="s2">&quot;ballot&quot;</span> <span class="n">to</span> <span class="s2">&quot;ballotBox&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><em>Everone can submit his vote during voting.</em></p>
+<p>Voters of ring is provided by <code class="docutils literal notranslate"><span class="pre">ballot</span></code>.
+Get inforamtions from <code class="docutils literal notranslate"><span class="pre">voters</span></code> contract and check age.
+May return some event.</p>
+</div>
+<div class="section" id="tally">
+<h3>tally<a class="headerlink" href="#tally" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">tally</span><span class="p">()</span>
+        <span class="n">duringTally</span>
+        <span class="n">returns</span><span class="p">(</span><span class="n">uint</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="n">result</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="o">//</span><span class="n">access</span> <span class="n">ballotBox</span>
+        <span class="o">//</span><span class="n">decrypt</span> <span class="n">each</span> <span class="n">vote</span>
+        <span class="o">//</span><span class="n">compute</span> <span class="n">results</span>
+        <span class="o">//</span><span class="k">return</span> <span class="n">results</span> <span class="n">efficiently</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -111,16 +176,28 @@
 <p class="caption"><span class="caption-text">Contracts:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Voting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ballot">Ballot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ballotbox">ballotBox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#electionstates">ElectionStates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#state">state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#title">title</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#proposer">proposer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#condition">condition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#starttime">startTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#endtime">endTime</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#submitballot">submitBallot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types">types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ballot">Ballot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electionstates">ElectionStates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#voting-states">voting states</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ballotbox">ballotBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state">state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#title">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proposer">proposer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#condition">condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starttime">startTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#endtime">endTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#votersat">votersAt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#constructor">constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitballot">submitBallot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tally">tally</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="VotingBoard.html">VotingBoard</a></li>

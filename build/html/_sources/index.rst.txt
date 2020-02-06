@@ -7,8 +7,8 @@ Welcome to date's documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contracts:
+   :maxdepth: 3
+   :caption: Contracts
 
    Voting.rst
    VotingBoard.rst
