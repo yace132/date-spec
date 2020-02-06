@@ -20,7 +20,7 @@
 project = 'date-spec'
 copyright = '2020, Eason'
 author = 'Eason'
-
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 
