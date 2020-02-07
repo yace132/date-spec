@@ -1,7 +1,7 @@
 Voting
 ======
 
-.. _types:
+.. _Types-of-Voting:
 
 -----
 types
@@ -19,11 +19,11 @@ ElectionStates
 
 ``enum ElectionStates { announced, voting, tally, closed }``
 
-.. _voting_states:
+.. _States-of-Voting:
 
--------------
-voting states
--------------
+------
+states
+------
 
 ^^^^^^^^^
 ballotBox
@@ -88,7 +88,7 @@ votersAt
 
 ``address votersAt;``
 
-.. _functions:
+.. _Functions-of-Voting:
 
 ---------
 functions
@@ -144,7 +144,7 @@ submitBallot
 		//Check current state
 		//Check age of voters in ring
 		//	open voters contract
-		//	get voters' informations
+		//	get voters' informations from "Voters.voterTable"
 		//Check no repeat voting ( key image )
 		//Push "ballot" to "ballotBox"
 	}

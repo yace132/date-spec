@@ -12,6 +12,7 @@ Welcome to date's documentation!
 
    Voting.rst
    VotingBoard.rst
+   Voters.rst
 
 Indices and tables
 ==================
