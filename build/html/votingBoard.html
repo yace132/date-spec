@@ -89,6 +89,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#states">states</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#admin">admin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elections">elections</a></li>
 </ul>
 </li>
@@ -97,6 +98,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#onlyadmin">onlyAdmin</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#constructor">constructor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#proposeelection">proposeElection</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getallelections">getAllElections</a></li>
 </ul>
@@ -184,6 +186,10 @@
 </div>
 <div class="section" id="states">
 <span id="states-of-votingboard"></span><h2>states<a class="headerlink" href="#states" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="admin">
+<h3>admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">admin;</span></code></p>
+</div>
 <div class="section" id="elections">
 <h3>elections<a class="headerlink" href="#elections" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Election[512]</span> <span class="pre">elections;</span></code></p>
@@ -196,6 +202,16 @@
 <div class="section" id="onlyadmin">
 <h4>onlyAdmin<a class="headerlink" href="#onlyadmin" title="Permalink to this headline">¶</a></h4>
 </div>
+</div>
+<div class="section" id="constructor">
+<h3>constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    function constructor(address admin_){
+    admin=admin_;
+    //set votersAt and votingKey?
+}
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">admin</span></code> is not constant. It can change if we deploy to different network. ( Otherwise, we need to modify our contract for different network )</p>
 </div>
 <div class="section" id="proposeelection">
 <h3>proposeElection<a class="headerlink" href="#proposeelection" title="Permalink to this headline">¶</a></h3>

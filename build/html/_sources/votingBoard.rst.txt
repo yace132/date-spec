@@ -24,6 +24,12 @@ Election
 states
 ------
 
+^^^^^
+admin
+^^^^^
+
+``address admin;``
+
 ^^^^^^^^^
 elections
 ^^^^^^^^^
@@ -42,6 +48,19 @@ modifiers
 
 onlyAdmin
 """""""""
+
+^^^^^^^^^^^
+constructor
+^^^^^^^^^^^
+
+::
+
+	function constructor(address admin_){
+    	admin=admin_;
+    	//set votersAt and votingKey?
+    }
+
+``admin`` is not constant. It can change if we deploy to different network. ( Otherwise, we need to modify our contract for different network )
 
 ^^^^^^^^^^^^^^^
 proposeElection
