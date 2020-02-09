@@ -55,9 +55,8 @@ constructor
 
 ::
 
-	function constructor(address admin_){
+	function constructor(address admin_)public{
     	admin=admin_;
-    	//set votersAt and votingKey?
     }
 
 ``admin`` is not constant. It can change if we deploy to different network. ( Otherwise, we need to modify our contract for different network )
@@ -78,7 +77,10 @@ proposeElection
 		uint endTime,
 		uint votingKey,
 		address votersAt
-	) onlyAdmin {
+	) 
+	onlyAdmin 
+	public
+	{
 		//Voting.new
 		//Owner of VotingBoard deploy "Voting" contract
 		//Write Voting's title and address to "elections"
