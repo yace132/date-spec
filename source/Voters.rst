@@ -77,13 +77,14 @@ selectVoters
 	function selectVoters(
 		uint ageMin,
 		uint ageMax,
-		uint seed,
-		uint size
+		uint seed
 	) 
 	view
-	returns (uint[1024] voters_){
-		//return rand(getVoters(ageMin,ageMax),seed,size);
+	returns (uint[5] voters_){
+		//return rand(getVoters(ageMin,ageMax),seed,5);
 	}
+
+Return only voters selected in ring to save bandwidth. Ring size 5 is fixed.
 
 ^^^^^^^^
 register
@@ -96,4 +97,4 @@ register
 		//write "voters_" to "voters" and "voterTable"
 	}
 
-https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments
+`how to send struct array as argument? <https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments>`_

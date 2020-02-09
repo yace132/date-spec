@@ -11,7 +11,15 @@ types
 Ballot
 ^^^^^^
 
-``struct Ballot{}``
+``struct Ballot{
+	encryptedmsg ???
+	key image (x,y) x uint?
+	indices of voters
+	sig,random # : c=q array ,r= w array ; uint256 for each q, w
+		uint256[ring size]
+}``
+uint,uint
+[uint,uint]
 
 ^^^^^^^^^^^^^^
 ElectionStates
@@ -38,7 +46,7 @@ state
 
 ``ElectionStates state;``
 
-
+**option**
 ^^^^^
 title
 ^^^^^
@@ -154,7 +162,9 @@ submitBallot
 Voters of ring is provided by ``ballot``.
 Get inforamtions from ``voters`` contract and check age.
 May return some event.
+check ring signature size.
 
+**fix ring size**
 
 ^^^^^
 tally

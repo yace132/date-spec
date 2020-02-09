@@ -90,8 +90,11 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#states">states</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ballotbox">ballotBox</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#state">state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#title">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state">state</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#option"><strong>option</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#title">title</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#proposer">proposer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#condition">condition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#starttime">startTime</a></li>
@@ -182,7 +185,19 @@
 <span id="types-of-voting"></span><h2>types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ballot">
 <h3>Ballot<a class="headerlink" href="#ballot" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">Ballot{}</span></code></p>
+<dl>
+<dt><a href="#id1"><span class="problematic" id="id2">``</span></a>struct Ballot{</dt><dd><p>encryptedmsg ???
+key image (x,y) x uint?
+indices of voters
+sig,random # : c=q array ,r= w array ; uint256 for each q, w</p>
+<blockquote>
+<div><p>uint256[ring size]</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>}``
+uint,uint
+[uint,uint]</p>
 </div>
 <div class="section" id="electionstates">
 <h3>ElectionStates<a class="headerlink" href="#electionstates" title="Permalink to this headline">¶</a></h3>
@@ -198,12 +213,15 @@
 <div class="section" id="state">
 <h3>state<a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ElectionStates</span> <span class="pre">state;</span></code></p>
+<div class="section" id="option">
+<h4><strong>option</strong><a class="headerlink" href="#option" title="Permalink to this headline">¶</a></h4>
 </div>
 <div class="section" id="title">
-<h3>title<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h3>
+<h4>title<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">bytes32</span> <span class="pre">title;</span></code></p>
 <p><em>name of voting</em></p>
 <p>Chinese is about 10 characters (utf8).fix-sized title is convenient for developers.</p>
+</div>
 </div>
 <div class="section" id="proposer">
 <h3>proposer<a class="headerlink" href="#proposer" title="Permalink to this headline">¶</a></h3>
@@ -281,7 +299,9 @@
 <p><em>Everone can submit his vote during voting.</em></p>
 <p>Voters of ring is provided by <code class="docutils literal notranslate"><span class="pre">ballot</span></code>.
 Get inforamtions from <code class="docutils literal notranslate"><span class="pre">voters</span></code> contract and check age.
-May return some event.</p>
+May return some event.
+check ring signature size.</p>
+<p><strong>fix ring size</strong></p>
 </div>
 <div class="section" id="tally">
 <h3>tally<a class="headerlink" href="#tally" title="Permalink to this headline">¶</a></h3>

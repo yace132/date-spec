@@ -224,15 +224,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">selectVoters</span><span class="p">(</span>
         <span class="n">uint</span> <span class="n">ageMin</span><span class="p">,</span>
         <span class="n">uint</span> <span class="n">ageMax</span><span class="p">,</span>
-        <span class="n">uint</span> <span class="n">seed</span><span class="p">,</span>
-        <span class="n">uint</span> <span class="n">size</span>
+        <span class="n">uint</span> <span class="n">seed</span>
 <span class="p">)</span>
 <span class="n">view</span>
-<span class="n">returns</span> <span class="p">(</span><span class="n">uint</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="n">voters_</span><span class="p">){</span>
-        <span class="o">//</span><span class="k">return</span> <span class="n">rand</span><span class="p">(</span><span class="n">getVoters</span><span class="p">(</span><span class="n">ageMin</span><span class="p">,</span><span class="n">ageMax</span><span class="p">),</span><span class="n">seed</span><span class="p">,</span><span class="n">size</span><span class="p">);</span>
+<span class="n">returns</span> <span class="p">(</span><span class="n">uint</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">voters_</span><span class="p">){</span>
+        <span class="o">//</span><span class="k">return</span> <span class="n">rand</span><span class="p">(</span><span class="n">getVoters</span><span class="p">(</span><span class="n">ageMin</span><span class="p">,</span><span class="n">ageMax</span><span class="p">),</span><span class="n">seed</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Return only voters selected in ring to save bandwidth. Ring size 5 is fixed.</p>
 </div>
 <div class="section" id="register">
 <h3>register<a class="headerlink" href="#register" title="Permalink to this headline">¶</a></h3>
@@ -242,7 +242,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments">https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments</a></p>
+<p><a class="reference external" href="https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments">how to send struct array as argument?</a></p>
 </div>
 </div>
 </div>

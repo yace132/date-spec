@@ -11,13 +11,25 @@ types
 Ballot
 ^^^^^^
 
-``struct Ballot{}``
+::
+	struct Ballot{
+		encryptedmsg; //???
+		uint keyImageX;
+		uint keyImageY;
+		uint[5] indices of voters;
+		sig;
+		//random # : c=q array ,r= w array 
+		//uint256 for each q, wuint256[ring size]
+	}
+	
+Point is represented as x,y not [x,y] or Point{x,y}. It is convenient to assign tuple, e.g. ``(x,y) = (newX,newY)``.
+
 
 ^^^^^^^^^^^^^^
 ElectionStates
 ^^^^^^^^^^^^^^
 
-``enum ElectionStates { announced, voting, tally, closed }``
+``enum ElectionStates { announced, voting, tally }``
 
 .. _States-of-Voting:
 
@@ -37,7 +49,6 @@ state
 ^^^^^
 
 ``ElectionStates state;``
-
 
 ^^^^^
 title
@@ -154,6 +165,7 @@ submitBallot
 Voters of ring is provided by ``ballot``.
 Get inforamtions from ``voters`` contract and check age.
 May return some event.
+check ring signature size=5.
 
 
 ^^^^^
@@ -171,3 +183,5 @@ tally
 		//compute results
 		//return results efficiently
 	}
+
+Accept at most 128 candicates.
