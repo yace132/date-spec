@@ -1,6 +1,18 @@
 VotingBoard
 ===========
 
+.. _pragma:
+
+--------
+encoding
+--------
+
+``pragma experimental ABIEncoderV2;``
+
+*enable nested array and struct encoding*
+
+e.g. string[64] as arguments
+
 .. _Types-of-VotingBoard:
 
 -----
@@ -14,7 +26,7 @@ Election
 ::
 
 	struct Election{
-		bytes32 title;
+		string title;
 		address votingAt;
 	}
 
@@ -28,13 +40,21 @@ states
 admin
 ^^^^^
 
-``address admin;``
+``address public admin;``
 
 ^^^^^^^^^
 elections
 ^^^^^^^^^
 
-``Election[512] elections;``
+``Election[512] public elections;``
+
+^^^^^^^^^^^^
+numElections
+^^^^^^^^^^^^
+
+``uint public numElections;``
+
+*Total number of proposed elections*
 
 .. _Functions-of-VotingBoard:
 
@@ -68,23 +88,26 @@ proposeElection
 ::
 
 	function proposeElection(
-		bytes32 title,
-		bytes32[64] options,
-		bytes32 proposer,
+		string memory title,
+		string[64] memory options,
+		string memory proposer,
 		uint ageMin,
 		uint ageMax,
-		uint startTime,
-		uint endTime,
+		uint startTime,//number of block
+		uint endTime,//number of block
 		uint votingKey,
 		address votersAt
 	) 
 	onlyAdmin 
 	public
 	{
-		//Voting.new
-		//Owner of VotingBoard deploy "Voting" contract
+		//new Voting();
+		//admin (server) deploys "Voting" contract
 		//Write Voting's title and address to "elections"
+		//numElections++;
 	}
+
+May change age to birth year and block number to date in future.
 
 ^^^^^^^^^^^^^^^
 getAllElections
@@ -93,6 +116,6 @@ getAllElections
 ::
 
 	function getAllElections(
-	)returns(Election[512] elections_)
+	)public returns(Election[512] elections_)
 
 We can get ``title`` and address of every ``Voting`` on ``VotingBoard``.

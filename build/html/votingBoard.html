@@ -84,6 +84,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Voting.html">Voting</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">VotingBoard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#encoding">encoding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#types">types</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#election">Election</a></li>
 </ul>
@@ -91,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#states">states</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#admin">admin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elections">elections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numelections">numElections</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">functions</a><ul>
@@ -172,12 +174,18 @@
             
   <div class="section" id="votingboard">
 <h1>VotingBoard<a class="headerlink" href="#votingboard" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="encoding">
+<span id="pragma"></span><h2>encoding<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pragma</span> <span class="pre">experimental</span> <span class="pre">ABIEncoderV2;</span></code></p>
+<p><em>enable nested array and struct encoding</em></p>
+<p>e.g. string[64] as arguments</p>
+</div>
 <div class="section" id="types">
 <span id="types-of-votingboard"></span><h2>types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="election">
 <h3>Election<a class="headerlink" href="#election" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">Election</span><span class="p">{</span>
-        <span class="n">bytes32</span> <span class="n">title</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">title</span><span class="p">;</span>
         <span class="n">address</span> <span class="n">votingAt</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -188,11 +196,16 @@
 <span id="states-of-votingboard"></span><h2>states<a class="headerlink" href="#states" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="admin">
 <h3>admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">admin;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">public</span> <span class="pre">admin;</span></code></p>
 </div>
 <div class="section" id="elections">
 <h3>elections<a class="headerlink" href="#elections" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Election[512]</span> <span class="pre">elections;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Election[512]</span> <span class="pre">public</span> <span class="pre">elections;</span></code></p>
+</div>
+<div class="section" id="numelections">
+<h3>numElections<a class="headerlink" href="#numelections" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">uint</span> <span class="pre">public</span> <span class="pre">numElections;</span></code></p>
+<p><em>Total number of proposed elections</em></p>
 </div>
 </div>
 <div class="section" id="functions">
@@ -205,10 +218,9 @@
 </div>
 <div class="section" id="constructor">
 <h3>constructor<a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    function constructor(address admin_){
-    admin=admin_;
-    //set votersAt and votingKey?
-}
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">function</span> <span class="n">constructor</span><span class="p">(</span><span class="n">address</span> <span class="n">admin_</span><span class="p">)</span><span class="n">public</span><span class="p">{</span>
+    <span class="n">admin</span><span class="o">=</span><span class="n">admin_</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">admin</span></code> is not constant. It can change if we deploy to different network. ( Otherwise, we need to modify our contract for different network )</p>
@@ -216,27 +228,32 @@
 <div class="section" id="proposeelection">
 <h3>proposeElection<a class="headerlink" href="#proposeelection" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">proposeElection</span><span class="p">(</span>
-        <span class="n">bytes32</span> <span class="n">title</span><span class="p">,</span>
-        <span class="n">bytes32</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="n">options</span><span class="p">,</span>
-        <span class="n">bytes32</span> <span class="n">proposer</span><span class="p">,</span>
+        <span class="n">string</span> <span class="n">memory</span> <span class="n">title</span><span class="p">,</span>
+        <span class="n">string</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="n">memory</span> <span class="n">options</span><span class="p">,</span>
+        <span class="n">string</span> <span class="n">memory</span> <span class="n">proposer</span><span class="p">,</span>
         <span class="n">uint</span> <span class="n">ageMin</span><span class="p">,</span>
         <span class="n">uint</span> <span class="n">ageMax</span><span class="p">,</span>
-        <span class="n">uint</span> <span class="n">startTime</span><span class="p">,</span>
-        <span class="n">uint</span> <span class="n">endTime</span><span class="p">,</span>
+        <span class="n">uint</span> <span class="n">startTime</span><span class="p">,</span><span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">block</span>
+        <span class="n">uint</span> <span class="n">endTime</span><span class="p">,</span><span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">block</span>
         <span class="n">uint</span> <span class="n">votingKey</span><span class="p">,</span>
         <span class="n">address</span> <span class="n">votersAt</span>
-<span class="p">)</span> <span class="n">onlyAdmin</span> <span class="p">{</span>
-        <span class="o">//</span><span class="n">Voting</span><span class="o">.</span><span class="n">new</span>
-        <span class="o">//</span><span class="n">Owner</span> <span class="n">of</span> <span class="n">VotingBoard</span> <span class="n">deploy</span> <span class="s2">&quot;Voting&quot;</span> <span class="n">contract</span>
+<span class="p">)</span>
+<span class="n">onlyAdmin</span>
+<span class="n">public</span>
+<span class="p">{</span>
+        <span class="o">//</span><span class="n">new</span> <span class="n">Voting</span><span class="p">();</span>
+        <span class="o">//</span><span class="n">admin</span> <span class="p">(</span><span class="n">server</span><span class="p">)</span> <span class="n">deploys</span> <span class="s2">&quot;Voting&quot;</span> <span class="n">contract</span>
         <span class="o">//</span><span class="n">Write</span> <span class="n">Voting</span><span class="s1">&#39;s title and address to &quot;elections&quot;</span>
+        <span class="o">//</span><span class="n">numElections</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>May change age to birth year and block number to date in future.</p>
 </div>
 <div class="section" id="getallelections">
 <h3>getAllElections<a class="headerlink" href="#getallelections" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">getAllElections</span><span class="p">(</span>
-<span class="p">)</span><span class="n">returns</span><span class="p">(</span><span class="n">Election</span><span class="p">[</span><span class="mi">512</span><span class="p">]</span> <span class="n">elections_</span><span class="p">)</span>
+<span class="p">)</span><span class="n">public</span> <span class="n">returns</span><span class="p">(</span><span class="n">Election</span><span class="p">[</span><span class="mi">512</span><span class="p">]</span> <span class="n">elections_</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We can get <code class="docutils literal notranslate"><span class="pre">title</span></code> and address of every <code class="docutils literal notranslate"><span class="pre">Voting</span></code> on <code class="docutils literal notranslate"><span class="pre">VotingBoard</span></code>.</p>
