@@ -18,17 +18,26 @@ Voter
 		uint age;
 	}
 
+``pubKey`` for sign ballot. May replace ``age`` with birth year in
+future. And add more informations of ``Voter`` on blockchain.
+
 .. _States-of-Voters:
 
 ------
 states
 ------
 
+^^^^^
+admin
+^^^^^
+
+``address public admin;``
+
 ^^^^^^
 voters
 ^^^^^^
 
-``Voter[1024] voters;``
+``Voter[1024] public voters;``
 
 ^^^^^^^^^^
 voterTable
@@ -92,9 +101,13 @@ register
 
 ::
 
-	function register(Voter[1024] voters_)
+	constructor register(Voter[1024] voters_)
 		onlyAdmin{
 		//write "voters_" to "voters" and "voterTable"
 	}
 
 `how to send struct array as argument? <https://ethereum.stackexchange.com/questions/70525/how-can-i-send-array-of-structs-as-arguments>`_
+
+Merge ``constructor`` and ``register`` now. b/c people who create ``Voters`` intend to ``register``.
+We can optimize gas cost by split these two functions in the future. (Or if too much cost of contract creation)
+ 
